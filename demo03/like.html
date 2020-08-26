@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class='wrapper'>
-      <!-- 当组件化开发，就只需要一个跟元素容器即可 -->
-      <!-- <button class='like-btn'>
-        <span class='like-text'>点赞</span>
-        <span>👍</span>
-      </button> -->
-    </div>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+  </head>
+  <body>
+    <!-- 根节点容器 -->
+    <div class='wrapper'></div>
+
+    <!-- 加载js文件 -->
     <script src="./Component.js"></script>
-    <script src="./likeButton.js"></script>
+    <script src="./LikeButton.js"></script>
+    <script src="./RedBlueButton.js"></script>
+
+    <!-- 调用组件 -- 实际工程项目不会如此 -->
+    <script>
+      const wrapper = document.querySelector('.wrapper')
+      mount(new LikeButton(), wrapper)
+      mount(new LikeButton({ bgColor: 'yellow' }), wrapper)
+      mount(new LikeButton({ bgColor: 'blue' }), wrapper)
+      mount(new RedBlueButton({ bgColor: 'red' }), wrapper)
+    </script>
   </body>
 </html>
