@@ -1,68 +1,36 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import LikeButton from './LikeButton';
+import LikeButton from './components/LikeButton';
 import './index.css';
 
-// class Title extends Component {
-//   handleClickOnTitle (word, e) {
-//     console.log(this, word)
-//   }
-
-//   render () {
-//     return (
-//       <h1 onClick={this.handleClickOnTitle.bind(this, 'Hello')}>React 小书</h1>
-//     )
-//   }
-// }
-
-// class Header extends Component {
-//   render () {
-//     return (
-//     <div>
-//       <Title />
-//       <h2>This is Header</h2>
-//     </div>
-//     )
-//   }
-// }
-
-// class Main extends Component {
-//   render () {
-//     return (
-//     <div>
-//       <h2>This is main content</h2>
-//     </div>
-//     )
-//   }
-// }
-
-// class Footer extends Component {
-//   render () {
-//     return (
-//     <div>
-//       <h2>This is footer</h2>
-//     </div>
-//     )
-//   }
-// }
-
-// class Index extends Component {
-//   render () {
-//     return (
-//       <div>
-//         <Header />
-//         <Main />
-//         <Footer />
-//       </div>
-//     )
-//   }
-// }
-
 class Index extends Component {
+  constructor () {
+    super()
+    this.state = {
+      likedText: '已赞',
+      unlikedText: '赞'
+    }
+  }
+
+  // 这里是,组件的使用者[Index]可以主动地通过重新渲染的方式把新的 props 传入组件[LikeButton]当中，这样这个组件中由 props 决定的显示形态也会得到相应的改变。
+  handleClickOnChange () {
+    this.setState({
+      likedText: '取消',
+      unlikedText: '点赞'
+    })
+  }
+
   render () {
     return (
       <div>
-        <LikeButton />
+         <LikeButton 
+         likedText={this.state.likedText}
+         unlikedText={this.state.unlikedText} />
+        <div>
+          <button onClick={this.handleClickOnChange.bind(this)}>
+            修改 wordings
+          </button>
+        </div>
       </div>
     )
   }
