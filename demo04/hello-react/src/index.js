@@ -1,36 +1,21 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import LikeButton from './components/LikeButton';
+import User from './components/User';
 import './index.css';
 
+const users = [
+  { username: 'Jerry', age: 21, gender: 'male' },
+  { username: 'Tomy', age: 22, gender: 'male' },
+  { username: 'Lily', age: 19, gender: 'female' },
+  { username: 'Lucy', age: 20, gender: 'female' }
+]
+
 class Index extends Component {
-  constructor () {
-    super()
-    this.state = {
-      likedText: '已赞',
-      unlikedText: '赞'
-    }
-  }
-
-  // 这里是,组件的使用者[Index]可以主动地通过重新渲染的方式把新的 props 传入组件[LikeButton]当中，这样这个组件中由 props 决定的显示形态也会得到相应的改变。
-  handleClickOnChange () {
-    this.setState({
-      likedText: '取消',
-      unlikedText: '点赞'
-    })
-  }
-
   render () {
     return (
       <div>
-         <LikeButton 
-         likedText={this.state.likedText}
-         unlikedText={this.state.unlikedText} />
-        <div>
-          <button onClick={this.handleClickOnChange.bind(this)}>
-            修改 wordings
-          </button>
-        </div>
+        {/* 这里 直接用循环计数器 i 作为 key是掩耳盗铃的做法[为什么？TBD], 记住一点：在实际项目当中，如果你的数据顺序可能发生变化，标准做法是最好是后台数据返回的 id 作为列表元素的 key */}
+         {users.map((user, i) => <User key={i} user={user} />)}
       </div>
     )
   }
